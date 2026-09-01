@@ -23,4 +23,13 @@ class CalculadoraTest {
 
         assertEquals(6, resultado);
     }
+
+    @Test
+    void deberiaMultiplicarDosNumeros() {
+        Calculadora calculadora = new Calculadora();
+
+        int resultado = calculadora.multiplicar(4, 3);
+
+        assertEquals(12, resultado);
+    }
 }
