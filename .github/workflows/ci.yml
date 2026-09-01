@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
@@ -27,9 +26,33 @@ jobs:
       - name: Compilar y ejecutar pruebas
         run: mvn clean test
 
-      - name: Guardar reporte de pruebas
+      - name: Guardar reportes de pruebas
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: reporte-pruebas
-          path: target/surefire-reports/
+          name: reportes-pruebas
+          path: |
+            target/surefire-reports/
+            target/cucumber-report.html
+
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring \
+            --keyring /usr/share/keyrings/k6-archive-keyring.gpg \
+            --keyserver hkp://keyserver.ubuntu.com:80 \
+            --recv-keys C780D0BDB1A69C86
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \
+            | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+
+      - name: Ejecutar prueba de rendimiento
+        run: k6 run performance/login-performance.js
