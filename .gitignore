@@ -1,0 +1,60 @@
+# ==========================
+# MAVEN
+# ==========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# ==========================
+# INTELLIJ IDEA
+# ==========================
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ==========================
+# KOTLIN
+# ==========================
+.kotlin/
+
+# ==========================
+# ARCHIVOS COMPILADOS
+# ==========================
+*.class
+
+# ==========================
+# LOGS
+# ==========================
+*.log
+
+# ==========================
+# ECLIPSE
+# ==========================
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# ==========================
+# NETBEANS
+# ==========================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# ==========================
+# VS CODE
+# ==========================
+.vscode/
+
+# ==========================
+# SISTEMA OPERATIVO
+# ==========================
+.DS_Store
+Thumbs.db
